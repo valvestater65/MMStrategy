@@ -5,7 +5,30 @@ import RaceData from './RaceData/raceData';
 class FormSetup extends Component {
 
     state = {
+        raceStats: {
+            fuelLaps:0,
+            raceLaps:0
+        },
         definedCompounds: []
+    }
+
+    fuelLapsHandler = (e) => 
+    {
+        e.preventDefault();
+
+        let currentStats = this.state.raceStats;
+        currentStats.fuelLaps = e.target.value;
+
+        this.setState({raceStats : currentStats});
+    }
+
+    raceLapsHandler = (e) => 
+    {
+        e.preventDefault();
+        let currentStats = this.state.raceStats;
+        currentStats.raceLaps = e.target.value;
+
+        this.setState({raceStats : currentStats});
     }
 
     addCompoundHandler = (compound) => 
@@ -49,10 +72,13 @@ class FormSetup extends Component {
     render (){
         return (
             <div>
-                <RaceData/>
+                <RaceData 
+                    fuelLaps = {this.fuelLapsHandler}
+                    raceLaps = {this.raceLapsHandler}/>
+
                 <button onClick={this.createCompoundHandler}>Add Compound</button>
                 {this.renderCompounds()}
-                <button>Calculate</button>
+                <button onClick={(event)=> this.props.calculateClick(event,this.state) }>Calculate</button>
             </div>
         );
     }
