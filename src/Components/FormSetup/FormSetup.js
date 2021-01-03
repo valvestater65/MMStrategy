@@ -17,7 +17,7 @@ class FormSetup extends Component {
         e.preventDefault();
 
         let currentStats = this.state.raceStats;
-        currentStats.fuelLaps = e.target.value;
+        currentStats.fuelLaps = parseInt(e.target.value);
 
         this.setState({raceStats : currentStats});
     }
@@ -26,7 +26,7 @@ class FormSetup extends Component {
     {
         e.preventDefault();
         let currentStats = this.state.raceStats;
-        currentStats.raceLaps = e.target.value;
+        currentStats.raceLaps = parseInt(e.target.value);
 
         this.setState({raceStats : currentStats});
     }

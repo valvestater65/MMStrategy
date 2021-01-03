@@ -7,7 +7,7 @@ import CalculatedStrategies from './CalculatedStrategies/calculatedStrategies';
 class Calculator extends Component 
 {
     definedCompounds = this.props.definedCompounds;
-    raceStats = this.props.raceStats;
+    raceStats = parseInt(this.props.raceStats);
 
     state = {
         raceStrategies: []
@@ -47,34 +47,35 @@ class Calculator extends Component
     {
         
         let currentLap = 0;
-        let compoundIndex = 0;
-
-        this.definedCompounds.sort((a,b) => {return a.speedFactor - b.speedFactor});
 
         while (currentLap < this.raceStats.raceLaps)
         {
-            let remainingStints = Math.round((this.raceStats.raceLaps - currentLap) / this.raceStats.fuelLaps);
-            let optimalStintLaps = (this.raceStats.raceLaps / remainingStints).toFixed(2);
+            let remainingLaps = (parseInt(this.raceStats.raceLaps) - currentLap);
+            let remainingStints = Math.ceil((remainingLaps) / this.raceStats.fuelLaps);
+            let optimalStintLaps = (remainingLaps / remainingStints).toFixed(2);
+            console.log('remainingLaps: ' + remainingLaps);
+            console.log('remainingStints: ' + remainingStints);
+            console.log('optimalStintLaps: ' + optimalStintLaps);
 
-            if (!this.canCompoundBeUsed(this.definedCompounds[compoundIndex]))
-            {
-                compoundIndex++;
-            }
-
-
-            //let compound = this.definedCompounds[compoundIndex];
             let compound = this.findOptimalCompound(optimalStintLaps,this.raceStats.fuelLaps);
+            if (compound){
+                currentLap = currentLap + compound.minLaps;
 
-            strategy.Stints.push(
-                new CalculatedStint(compound.tyreType.name,
-                        compound.minLaps,
-                        compound.speedFactor,
-                        10)
-            );
+                strategy.Stints.push(
+                    new CalculatedStint(compound.tyreType.name,
+                            currentLap,
+                            compound.speedFactor,
+                            10)
+                );
 
-            this.updateCompoundUsage(compound);
-            currentLap = currentLap + compound.minLaps;
-            console.log('currentLap:' + currentLap);
+                this.updateCompoundUsage(compound);
+                console.log('used compounds');
+                console.log(this.usedCompounds);
+            }
+            else{
+                //No compounds found
+                currentLap = this.raceStats.raceLaps;
+            }
         }
 
         return strategy;
@@ -92,7 +93,8 @@ class Calculator extends Component
 
         let candidates = [];
         let compoundMinLaps = (optimalStintLaps > fuelLaps)? fuelLaps:optimalStintLaps;
-        
+        console.log('compoundMinLaps:' + compoundMinLaps);
+
         this.definedCompounds.forEach(element => {
             if (this.canCompoundBeUsed(element))
             {
@@ -154,6 +156,7 @@ class Calculator extends Component
     {
         if (this.usedCompounds.length === 0)
         {
+            console.log('no usedCompounds: true');
             return true;
         }
         else
@@ -162,10 +165,12 @@ class Calculator extends Component
 
             if (!element)
             {
+                console.log('no element: true');
                 return true;
             }
             else
             {
+                console.log('element! returning: ' + element.used <= compound.available);
                 return element.used < compound.available;
             }
         }
