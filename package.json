@@ -1,5 +1,5 @@
 {
-  "homepage":"https://valvestater65.github.io/MMStrategy",
+  "homepage": "https://valvestater65.github.io/MMStrategy",
   "name": "strategybuilder",
   "version": "0.1.0",
   "private": true,
@@ -13,8 +13,8 @@
     "react-scripts": "4.0.1"
   },
   "scripts": {
-    "predeploy":"yarn build",
-    "deploy":"gh-pages -d build",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
