@@ -13,7 +13,10 @@ const calculatedStrategies = (props) =>
     
 
     return (
-        renderStints
+        <div>
+            <h2>Calculated Strategy: </h2>
+            {renderStints}
+        </div>
     );
 }
 

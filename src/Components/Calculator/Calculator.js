@@ -28,10 +28,8 @@ class Calculator extends Component
 
     calculateRaceStrategies() 
     {
-        console.log('calculating strategies');
         if (this.definedCompounds.length > 0)
         {
-            console.log('we got compoounds!');
             //while(this.compoundsAvailable())
             //{
                 let strategy = this.calculateStrategyStints(new RaceStrategy());
@@ -39,7 +37,6 @@ class Calculator extends Component
                 calculatedStrategies.push(strategy);
                 this.setState({raceStrategies:calculatedStrategies});
             //}
-            console.log('end loop');
         }
     }
 
@@ -59,8 +56,8 @@ class Calculator extends Component
 
             let compound = this.findOptimalCompound(optimalStintLaps,this.raceStats.fuelLaps);
             if (compound){
-                currentLap = currentLap + compound.minLaps;
 
+                console.log('compound determined: ' + compound.tyreType.name);
                 strategy.Stints.push(
                     new CalculatedStint(compound.tyreType.name,
                             currentLap,
@@ -68,6 +65,7 @@ class Calculator extends Component
                             10)
                 );
 
+                currentLap = currentLap + (compound.minLaps > this.raceStats.fuelLaps?this.raceStats.fuelLaps:compound.minLaps);
                 this.updateCompoundUsage(compound);
                 console.log('used compounds');
                 console.log(this.usedCompounds);
@@ -135,12 +133,12 @@ class Calculator extends Component
         }
         else
         {
-            let usedCompound = this.usedCompounds.find((el) => el.compoundId === compound.id);
+            let usedCompound = this.usedCompounds.find((el) => parseInt(el.compoundId) === parseInt(compound.id));
             if (usedCompound)
             {
                 usedCompound.used+=1;
                 
-                this.usedCompounds.slice(this.usedCompounds.findIndex((el)=> el.compoundId === compound.id),1,usedCompound);
+                this.usedCompounds.slice(this.usedCompounds.findIndex((el)=> parseInt(el.compoundId) === parseInt(compound.id)),1,usedCompound);
             }
             else{
 
@@ -156,31 +154,25 @@ class Calculator extends Component
     {
         if (this.usedCompounds.length === 0)
         {
-            console.log('no usedCompounds: true');
             return true;
         }
         else
         {
-            let element = this.usedCompounds.find((el) => el.compoundId === compound.id);
+            let element = this.usedCompounds.find((el) => parseInt(el.compoundId) === parseInt(compound.id));
 
             if (!element)
             {
-                console.log('no element: true');
                 return true;
             }
             else
             {
-                console.log('element! returning: ' + element.used <= compound.available);
                 return element.used < compound.available;
             }
         }
-        
     }
 
     renderCalculatedStints()
     {
-        console.log("here");
-        console.log(this.state.raceStrategies);
         if (this.state.raceStrategies.length > 0)
         {
             return this.state.raceStrategies.map((strategy) => {
