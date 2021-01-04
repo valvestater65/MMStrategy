@@ -24,6 +24,7 @@ class Calculator extends Component
         if (this.definedCompounds !== this.props.definedCompounds)
         {
             this.raceStrategies = [];
+            this.usedCompounds = [];
             this.definedCompounds = this.props.definedCompounds;
             this.raceStats = this.props.raceStats;
             this.calculateRaceStrategies();
