@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/MMStrategy/static/css/main.ab4ec2bd.chunk.css",
-    "main.js": "/MMStrategy/static/js/main.eed0e0ec.chunk.js",
-    "main.js.map": "/MMStrategy/static/js/main.eed0e0ec.chunk.js.map",
+    "main.css": "/MMStrategy/static/css/main.7c9262be.chunk.css",
+    "main.js": "/MMStrategy/static/js/main.4f686ce9.chunk.js",
+    "main.js.map": "/MMStrategy/static/js/main.4f686ce9.chunk.js.map",
     "runtime-main.js": "/MMStrategy/static/js/runtime-main.3cff9e46.js",
     "runtime-main.js.map": "/MMStrategy/static/js/runtime-main.3cff9e46.js.map",
-    "static/js/2.ecd1c810.chunk.js": "/MMStrategy/static/js/2.ecd1c810.chunk.js",
-    "static/js/2.ecd1c810.chunk.js.map": "/MMStrategy/static/js/2.ecd1c810.chunk.js.map",
+    "static/js/2.05e13579.chunk.js": "/MMStrategy/static/js/2.05e13579.chunk.js",
+    "static/js/2.05e13579.chunk.js.map": "/MMStrategy/static/js/2.05e13579.chunk.js.map",
     "index.html": "/MMStrategy/index.html",
-    "static/css/main.ab4ec2bd.chunk.css.map": "/MMStrategy/static/css/main.ab4ec2bd.chunk.css.map",
-    "static/js/2.ecd1c810.chunk.js.LICENSE.txt": "/MMStrategy/static/js/2.ecd1c810.chunk.js.LICENSE.txt"
+    "static/css/main.7c9262be.chunk.css.map": "/MMStrategy/static/css/main.7c9262be.chunk.css.map",
+    "static/js/2.05e13579.chunk.js.LICENSE.txt": "/MMStrategy/static/js/2.05e13579.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.3cff9e46.js",
-    "static/js/2.ecd1c810.chunk.js",
-    "static/css/main.ab4ec2bd.chunk.css",
-    "static/js/main.eed0e0ec.chunk.js"
+    "static/js/2.05e13579.chunk.js",
+    "static/css/main.7c9262be.chunk.css",
+    "static/js/main.4f686ce9.chunk.js"
   ]
 }
