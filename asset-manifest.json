@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/MMStrategy/static/css/main.7c9262be.chunk.css",
-    "main.js": "/MMStrategy/static/js/main.4f686ce9.chunk.js",
-    "main.js.map": "/MMStrategy/static/js/main.4f686ce9.chunk.js.map",
+    "main.js": "/MMStrategy/static/js/main.a481e9c7.chunk.js",
+    "main.js.map": "/MMStrategy/static/js/main.a481e9c7.chunk.js.map",
     "runtime-main.js": "/MMStrategy/static/js/runtime-main.3cff9e46.js",
     "runtime-main.js.map": "/MMStrategy/static/js/runtime-main.3cff9e46.js.map",
     "static/js/2.05e13579.chunk.js": "/MMStrategy/static/js/2.05e13579.chunk.js",
@@ -15,6 +15,6 @@
     "static/js/runtime-main.3cff9e46.js",
     "static/js/2.05e13579.chunk.js",
     "static/css/main.7c9262be.chunk.css",
-    "static/js/main.4f686ce9.chunk.js"
+    "static/js/main.a481e9c7.chunk.js"
   ]
 }
