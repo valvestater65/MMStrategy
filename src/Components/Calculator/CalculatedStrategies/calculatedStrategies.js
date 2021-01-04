@@ -4,9 +4,9 @@ import Styles from './calculatedStrategies.module.css';
 
 const calculatedStrategies = (props) => 
 {
-    const renderStints = props.strategy.Stints.map((stint) => 
+    const renderStints = props.strategy.Stints.map((stint,index) => 
         {
-            return <CalculatedStints key={Date.now()}
+            return <CalculatedStints key={index}
                 stint = {stint}
                 />
         });

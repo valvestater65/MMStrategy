@@ -8,7 +8,8 @@ class FormSetup extends Component {
     state = {
         raceStats: {
             fuelLaps:0,
-            raceLaps:0
+            raceLaps:0,
+            deltaFuel:0
         },
         definedCompounds: []
     }
@@ -28,6 +29,15 @@ class FormSetup extends Component {
         e.preventDefault();
         let currentStats = this.state.raceStats;
         currentStats.raceLaps = parseInt(e.target.value);
+
+        this.setState({raceStats : currentStats});
+    }
+
+    deltaFuelHandler = (e) => 
+    {
+        e.preventDefault();
+        let currentStats = this.state.raceStats;
+        currentStats.deltaFuel = parseInt(e.target.value);
 
         this.setState({raceStats : currentStats});
     }
@@ -75,7 +85,8 @@ class FormSetup extends Component {
             <div>
                 <RaceData 
                     fuelLaps = {this.fuelLapsHandler}
-                    raceLaps = {this.raceLapsHandler}/>
+                    raceLaps = {this.raceLapsHandler}
+                    deltaFuel = {this.deltaFuelHandler}/>
 
                 <button onClick={this.createCompoundHandler}>Add Compound</button>
                 <div className={style.CompoundRow}>

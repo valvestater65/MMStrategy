@@ -6,20 +6,24 @@ import CalculatedStrategies from './CalculatedStrategies/calculatedStrategies';
 
 class Calculator extends Component 
 {
-    definedCompounds = this.props.definedCompounds;
+    definedCompounds = null;
     raceStats = parseInt(this.props.raceStats);
-
-    state = {
-        raceStrategies: []
-    }
-
     usedCompounds = [];
     currentStrategy = null;
+    raceStrategies = [];
 
-    componentDidUpdate(prevProps)
+
+    constructor(props)
     {
-        if (this.props.definedCompounds !== prevProps.definedCompounds)
+        super(props);
+        this.state = {render:false};
+    }
+
+    componentDidUpdate()
+    {
+        if (this.definedCompounds !== this.props.definedCompounds)
         {
+            this.raceStrategies = [];
             this.definedCompounds = this.props.definedCompounds;
             this.raceStats = this.props.raceStats;
             this.calculateRaceStrategies();
@@ -33,9 +37,9 @@ class Calculator extends Component
             //while(this.compoundsAvailable())
             //{
                 let strategy = this.calculateStrategyStints(new RaceStrategy());
-                let calculatedStrategies = this.state.raceStrategies;
-                calculatedStrategies.push(strategy);
-                this.setState({raceStrategies:calculatedStrategies});
+                this.raceStrategies.push(strategy);
+                this.setState({render:true});
+
             //}
         }
     }
@@ -50,28 +54,26 @@ class Calculator extends Component
             let remainingLaps = (parseInt(this.raceStats.raceLaps) - currentLap);
             let remainingStints = Math.ceil((remainingLaps) / this.raceStats.fuelLaps);
             let optimalStintLaps = (remainingLaps / remainingStints).toFixed(2);
-            console.log('remainingLaps: ' + remainingLaps);
-            console.log('remainingStints: ' + remainingStints);
-            console.log('optimalStintLaps: ' + optimalStintLaps);
+            
 
             let compound = this.findOptimalCompound(optimalStintLaps,this.raceStats.fuelLaps);
             if (compound){
 
-                console.log('compound determined: ' + compound.tyreType.name);
+                let stintLaps = this.getStintLaps(currentLap,compound);
+                let stintFuel = this.getStintFuel(strategy,stintLaps);
+
                 strategy.Stints.push(
                     new CalculatedStint(compound.tyreType.name,
                             currentLap,
                             compound.speedFactor,
-                            10,
+                            stintFuel,
                             compound,
-                            this.getStintLaps(currentLap,compound)
+                            stintLaps
                             )
                 );
 
                 currentLap = currentLap + (compound.minLaps > this.raceStats.fuelLaps?this.raceStats.fuelLaps:compound.minLaps);
                 this.updateCompoundUsage(compound);
-                console.log('used compounds');
-                console.log(this.usedCompounds);
             }
             else{
                 //No compounds found
@@ -92,6 +94,23 @@ class Calculator extends Component
         return (this.raceStats.raceLaps - currentLap);
     }
 
+    getStintFuel(strategy,stintLaps)
+    {
+        if (strategy.Stints.length === 0)
+        {
+            //First stint we go full fuel. 
+            return this.raceStats.fuelLaps;
+        }
+        else
+        {
+            let previousStint = strategy.Stints[strategy.Stints.length - 1];
+            let remainingFuel = previousStint.Fuel - previousStint.StintLength;
+            let calculatedFuel = stintLaps - remainingFuel + this.raceStats.deltaFuel;
+
+            return (calculatedFuel>this.raceStats.fuelLaps)? this.raceStats.fuelLaps : calculatedFuel;
+        }
+    }
+
     findOptimalCompound(optimalStintLaps,fuelLaps) 
     {
         //Find optimal compound:
@@ -104,7 +123,6 @@ class Calculator extends Component
 
         let candidates = [];
         let compoundMinLaps = (optimalStintLaps > fuelLaps)? fuelLaps:optimalStintLaps;
-        console.log('compoundMinLaps:' + compoundMinLaps);
 
         this.definedCompounds.forEach(element => {
             if (this.canCompoundBeUsed(element))
@@ -186,14 +204,17 @@ class Calculator extends Component
 
     renderCalculatedStints()
     {
-        if (this.state.raceStrategies.length > 0)
+        if (this.raceStrategies.length > 0)
         {
-            return this.state.raceStrategies.map((strategy) => {
-                return <CalculatedStrategies key={Date.now} strategy={strategy} />
+            return this.raceStrategies.map((strategy,index) => {
+                return <CalculatedStrategies 
+                    key={index} 
+                    strategy={strategy}
+                    />
             })
         }
         else{
-            return <p>provide data</p>;
+            return <p>Provide data first.</p>;
         }
     }
 

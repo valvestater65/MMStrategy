@@ -12,6 +12,10 @@ const RaceData = (props) =>
             <label>Race Laps:</label>
             <input type="text" placeholder="Race Laps" onChange={(ev) => props.raceLaps(ev)}/>
         </div>
+        <div className={styles.formRow}>
+            <label>Delta Fuel laps:</label>
+            <input type="text" placeholder="Delta Fuel Laps" onChange={(ev) => props.deltaFuel(ev)}/>
+        </div>
     </div>
 );
 
