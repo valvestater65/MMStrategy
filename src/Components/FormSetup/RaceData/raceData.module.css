@@ -1,0 +1,15 @@
+.RaceData {
+    margin-top:10px;
+    margin-bottom:10px;
+    display:flex;
+    flex-flow: column;
+    width: 500px;
+}
+
+.RaceData .formRow
+{
+    display:flex;
+    flex-flow:row;
+    align-items: center;
+    justify-content: space-between;
+}

@@ -62,7 +62,10 @@ class Calculator extends Component
                     new CalculatedStint(compound.tyreType.name,
                             currentLap,
                             compound.speedFactor,
-                            10)
+                            10,
+                            compound,
+                            this.getStintLaps(currentLap,compound)
+                            )
                 );
 
                 currentLap = currentLap + (compound.minLaps > this.raceStats.fuelLaps?this.raceStats.fuelLaps:compound.minLaps);
@@ -77,6 +80,16 @@ class Calculator extends Component
         }
 
         return strategy;
+    }
+
+    getStintLaps(currentLap,compound)
+    {
+        if ((this.raceStats.raceLaps - currentLap) > compound.minLaps)
+        {
+            return (compound.minLaps > this.raceStats.fuelLaps?this.raceStats.fuelLaps:compound.minLaps);
+        }
+
+        return (this.raceStats.raceLaps - currentLap);
     }
 
     findOptimalCompound(optimalStintLaps,fuelLaps) 

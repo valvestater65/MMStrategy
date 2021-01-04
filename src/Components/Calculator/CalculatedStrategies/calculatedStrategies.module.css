@@ -1,0 +1,11 @@
+.CalculatedStrategy
+{
+    margin:5px,5px;
+}
+
+.CalculatedStrategy .stintrow
+{
+    display:flex;
+    flex-flow: row wrap;
+}
+

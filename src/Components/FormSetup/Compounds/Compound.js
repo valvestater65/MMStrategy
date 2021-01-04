@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import TyreType from '../../../Models/TyreType';
+import styles from './Compound.module.css';
 
 class Compound extends Component {
     
@@ -81,25 +82,34 @@ class Compound extends Component {
 
     render () {
         return (
-            <div>
+            <div className={styles.Compound}>
+                
                 <select name="compounds" onChange={(event) => this.setTyreTypeHandler(event)}>
                     {this.getTyreOptions()}
                 </select>
-                <label>Max Laps:</label>
-                <input type="text" placeholder="MaxLaps" onChange={(event) => this.setMaxLapsHandler(event)} /> 
-                <label>Min Laps:</label>
-                <input type="text" placeholder="MinLaps" onChange={(event) => this.setMinLapsHandler(event)}/> 
-                <label>Available:</label>
-                <input type="text" placeholder="Available" onChange={(event) => this.setAvailableCompoundsHandler(event)}/>
+                
+                <div className={styles.formRow}>
+                    <label>Max Laps:</label>
+                    <input type="text" placeholder="MaxLaps" onChange={(event) => this.setMaxLapsHandler(event)} />
+                </div>
+                <div className={styles.formRow}>
+                    <label>Min Laps:</label>
+                    <input type="text" placeholder="MinLaps" onChange={(event) => this.setMinLapsHandler(event)} />
+                </div>
+                <div className={styles.formRow}>
+                    <label>Available:</label>
+                    <input type="text" placeholder="Available" onChange={(event) => this.setAvailableCompoundsHandler(event)} />
+                </div>
                 {
-                (this.state.isSet)?
-                    <button onClick={() => {
-                        this.setState({isSet:false})
-                        this.props.setCompound(this.state.setCompound);}}
+                    (this.state.isSet) ?
+                        <button onClick={() => {
+                            this.setState({ isSet: false })
+                            this.props.setCompound(this.state.setCompound);
+                        }}
                         >Set</button>
                         :
                         <button disabled>Set</button>
-                
+
                 }
                 <button>Remove</button>
             </div>

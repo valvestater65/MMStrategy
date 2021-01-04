@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import Compound from './Compounds/Compound';
 import RaceData from './RaceData/raceData';
+import style from './FormSetup.module.css';
 
 class FormSetup extends Component {
 
@@ -77,7 +78,9 @@ class FormSetup extends Component {
                     raceLaps = {this.raceLapsHandler}/>
 
                 <button onClick={this.createCompoundHandler}>Add Compound</button>
-                {this.renderCompounds()}
+                <div className={style.CompoundRow}>
+                    {this.renderCompounds()}
+                </div>
                 <button onClick={(event)=> this.props.calculateClick(event,this.state) }>Calculate</button>
             </div>
         );

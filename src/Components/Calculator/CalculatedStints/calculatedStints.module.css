@@ -1,4 +1,50 @@
 .CalculatedStints {
-    margin:5px,5px;
-    background-color: #FFCC00;
+    width: 300px;
+    margin: 5px 5px 5px 5px;
+    display:flex;
+    flex-flow: column;
+    justify-content: center;
+    border:2px solid #3A6B7E;
+    border-radius: 5px;
+}
+.CalculatedStints .Compound{
+    padding:5px 5px;
+    background-color: #dbaf00;
+    color:#264653;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.CalculatedStints .Details
+{
+    padding: 5px;
+    background-color: #fbfbfb;
+    color:#272342;
+}
+
+.row
+{
+    display: flex;
+    flex-flow:row;
+    justify-content: space-between;
+    margin-bottom:2px;
+}
+
+.row p{
+    margin-bottom: 2px;
+    margin-top:2px;
+}
+.row span{
+    font-weight:bolder;
+    color: #272342;
+}
+
+.warning
+{
+    background-color:#FD855D;
+}
+
+.safe
+{
+    background-color:#B9CF4F;
 }

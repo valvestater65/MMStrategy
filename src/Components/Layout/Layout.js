@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Calculator from '../Calculator/Calculator';
 import FormSetup from '../FormSetup/FormSetup';
+import styles from './Layout.module.css';
 
 class Layout extends Component{
     state = {
@@ -16,7 +17,7 @@ class Layout extends Component{
 
     render (){
         return(
-            <div>
+            <div className={styles.Layout}>
                 <h1>Strategy Builder</h1>
                 <FormSetup calculateClick = {this.calculateClickHandler}/>
                 <Calculator

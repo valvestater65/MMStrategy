@@ -1,0 +1,23 @@
+.Compound {
+    display:flex;
+    flex-flow: column;
+    width:300px;
+    margin:10px 5px 5px 10px;
+    border: 1px solid #272342;
+    border-radius: 3px;
+    padding:5px;
+}
+
+.Compound .formRow
+{
+    display:flex;
+    flex-flow:row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top:5px;
+}
+
+.Compound button
+{
+    margin-top:5px;
+}

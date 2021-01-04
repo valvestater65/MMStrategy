@@ -1,10 +1,12 @@
 class CalculatedStint{
-    constructor(tyreName,laps,weigth,fuel)
+    constructor(tyreName,boxlap,weigth,fuel,compound,stintLenght)
     {
         this.TyreName = tyreName;
-        this.Laps = laps;
+        this.BoxLap = boxlap;
         this.Weight = weigth;
         this.Fuel = fuel;
+        this.Compound = compound;
+        this.StintLength = stintLenght
     }
 }
 
