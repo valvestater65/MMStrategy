@@ -13,3 +13,22 @@
     align-items: center;
     justify-content: space-between;
 }
+
+.RaceData input[type=text]
+{
+    border:none;
+    padding:2px;
+    margin:2px;
+    background-color: inherit;
+
+}
+
+.RaceData input[type=text]:hover,
+.RaceData input[type=text]:focus
+{
+    transition: background-color .5s ease-in-out;
+    background-color: #5a671c;
+    color:#dbaf00;
+    border:none;
+}
+
