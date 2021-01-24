@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Calculator from '../Calculator/Calculator';
 import FormSetup from '../FormSetup/FormSetup';
+import PageHeader from './Header/pageHeader';
 import styles from './Layout.module.css';
 
 class Layout extends Component{
@@ -18,7 +19,7 @@ class Layout extends Component{
     render (){
         return(
             <div className={styles.Layout}>
-                <h1>Strategy Builder</h1>
+                <PageHeader />   
                 <FormSetup calculateClick = {this.calculateClickHandler}/>
                 <Calculator
                     raceStats = {this.state.raceStats}

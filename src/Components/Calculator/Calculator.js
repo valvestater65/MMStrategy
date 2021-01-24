@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import CalculatedStint from '../../Models/CalculatedStint';
 import RaceStrategy from '../../Models/RaceStrategy';
 import CalculatedStrategies from './CalculatedStrategies/calculatedStrategies';
+import style from './Calculator.module.css';
 
 
 class Calculator extends Component 
@@ -221,7 +222,11 @@ class Calculator extends Component
 
 
     render () {
-        return (this.renderCalculatedStints());
+        return (
+            <div className={style.Calculator}>
+                {this.renderCalculatedStints()}
+            </div>
+            );
     }
 }
 

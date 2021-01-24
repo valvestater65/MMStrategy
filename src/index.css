@@ -11,11 +11,11 @@ body {
 
 button,
 button:active{
-  background-color: #695FAB;
+  background-color: #272342;
   color:#DBAF00;
-  border-bottom-color: #5A671C;
   border-radius: 5px;
-  height:29px;
+  height:30px;
+
 }
 
 button:hover{
@@ -27,4 +27,9 @@ button:disabled
   background-color:#CDCAE3;
   color:#272342;
   cursor:no-drop;
+}
+
+input {
+  border:none;
+  border-bottom: 1px solid #272342;
 }

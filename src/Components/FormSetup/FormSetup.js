@@ -82,7 +82,10 @@ class FormSetup extends Component {
 
     render (){
         return (
-            <div>
+            <div className={style.FormSetup}>
+                <div>
+                    <p>Setup your main race parameters here. Once done, add compound</p> 
+                </div>
                 <RaceData 
                     fuelLaps = {this.fuelLapsHandler}
                     raceLaps = {this.raceLapsHandler}
